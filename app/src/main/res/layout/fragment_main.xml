@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mahmoudsallam.task.ui.main.MainViewModel" />
+    </data>
+
+    <FrameLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ColorGray"
+        tools:context=".ui.main.MainFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/screen_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:srcCompat="@drawable/ic_burger_menu" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center"
+                            android:text="@string/friends"
+                            android:textColor="@color/ColorWhite"
+                            android:textSize="20sp"
+                            android:textStyle="bold"></TextView>
+
+
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/users_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/screen_app_bar"
+                android:layout_margin="@dimen/item_user_margins"
+                tools:listitem="@layout/item_user" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/no_internet_view"
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/ic_no_internet"
+                android:id="@+id/no_internet_img"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/oh_sorry"
+                android:textAlignment="center"
+                android:textColor="@color/ColorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/connection_problem"
+                android:textAlignment="center"
+                android:textColor="@color/ColorBlack"
+                android:textSize="13sp"
+                android:gravity="center_horizontal"></TextView>
+
+        </LinearLayout>
+
+
+
+
+
+    </FrameLayout>
+</layout>

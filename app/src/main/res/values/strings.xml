@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sharing Group</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="friends">Friends</string>
+    <string name="profile">Profile</string>
+    <string name="oh_sorry">Oh! Sorry</string>
+    <string name="connection_problem">May be there is a connection problem</string>
+</resources>
