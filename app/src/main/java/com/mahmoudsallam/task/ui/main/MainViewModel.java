@@ -18,11 +18,13 @@ import java.util.PrimitiveIterator;
 import io.reactivex.functions.Consumer;
 
 public class MainViewModel extends BaseViewModel<MainNavigator> {
+
     private MutableLiveData<List<UsersResponse>> _usersList = new MutableLiveData<>();
     LiveData<List<UsersResponse>> usersList = _usersList;
-
     private MutableLiveData<Boolean> _showNoInternet = new MutableLiveData<>();
     LiveData<Boolean> showNoInternet = _showNoInternet;
+    private MutableLiveData<Boolean> _showLoading = new MutableLiveData<>();
+    LiveData<Boolean> showLoading = _showLoading;
 
 
     public MainViewModel(DataManager dataManager,
@@ -31,6 +33,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     }
 
     public void getUsers() {
+        if (getFistTime() == null)
+            _showLoading.setValue(true);
+        else {
+            _showLoading.setValue(false);
+        }
+
         getCompositeDisposable().add(getDataManager()
                 .getUsers()
                 .doOnNext(usersResponseList -> Log.d("SIZE", "size" + usersResponseList.size()))
@@ -40,7 +48,8 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                     Log.d("users", usersResponseList.toString());
                     _usersList.setValue(usersResponseList);
                     insertAllUsers(usersResponseList);
-
+                    setFirstTime();
+                    _showLoading.setValue(false);
                 }, throwable -> {
                     Log.d("users", throwable.getMessage());
 
@@ -78,6 +87,15 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                 }, throwable -> {
                     Log.d("users", throwable.getMessage());
                 }));
+    }
+
+    private void setFirstTime() {
+        getDataManager().setIsFirstTime("false");
+    }
+
+    private String getFistTime() {
+        String res = getDataManager().getIsFirstTime();
+        return res;
     }
 }
 

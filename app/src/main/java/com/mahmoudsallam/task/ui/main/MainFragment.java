@@ -90,17 +90,17 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainViewMode
 
             }
         });
+        mMainViewModel.showLoading.observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean == true) {
+                getViewDataBinding().progress.setVisibility(View.VISIBLE);
+            } else {
+                getViewDataBinding().progress.setVisibility(View.GONE);
 
-
+            }
+        });
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void setUserData(List<UsersResponse> userList) {
-        usersAdapter = new UsersAdapter(getContext(), userList, this);
-        getViewDataBinding().usersRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        getViewDataBinding().usersRv.setAdapter(usersAdapter);
-    }
 
     @Override
     public void showUserDetails(UsersResponse user) {
